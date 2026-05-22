@@ -4,12 +4,12 @@ import KPIGrid from '@/components/dashboard/KPIGrid';
 import CityOverviewChart from '@/components/dashboard/CityOverviewChart';
 import StatusPieChart from '@/components/dashboard/StatusPieChart';
 import RecentActivity from '@/components/dashboard/RecentActivity';
-import { usePropertyStore } from '@/store/usePropertyStore';
+import { useFilteredProperties } from '@/hooks/useFilteredProperties';
 import { useAnalytics } from '@/hooks/useAnalytics';
 import { formatINR, formatPercentage, formatNumber } from '@/lib/utils';
 
 export default function DashboardPage() {
-  const properties = usePropertyStore((s) => s.getFilteredProperties());
+  const properties = useFilteredProperties();
   const { totalStats } = useAnalytics(properties);
 
   return (
