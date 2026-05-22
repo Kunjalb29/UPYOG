@@ -54,7 +54,7 @@ export default function TopBar() {
           'relative flex items-center transition-all duration-300',
           searchFocused ? 'w-80' : 'w-64'
         )}>
-          <Search className="absolute left-3 w-4 h-4" style={{ color: 'var(--color-text-tertiary)' }} />
+          <Search className="absolute left-3 w-4 h-4 pointer-events-none z-10" style={{ color: 'var(--color-text-tertiary)' }} />
           <input
             ref={inputRef}
             type="text"
@@ -63,13 +63,11 @@ export default function TopBar() {
             placeholder="Search properties..."
             onFocus={() => setSearchFocused(true)}
             onBlur={() => setSearchFocused(false)}
-            className="w-full h-10 rounded-xl text-sm border transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500/50"
+            className="w-full h-10 pl-11 pr-12 rounded-xl text-sm border transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500/50"
             style={{
               backgroundColor: 'var(--color-surface-tertiary)',
               borderColor: 'var(--color-border)',
               color: 'var(--color-text-primary)',
-              paddingLeft: '2.75rem',
-              paddingRight: '3rem',
             }}
           />
           {!searchQuery && !searchFocused && (
