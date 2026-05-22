@@ -3,13 +3,13 @@ import {
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip,
   ResponsiveContainer, Cell
 } from 'recharts';
-import { usePropertyStore } from '@/store/usePropertyStore';
+import { useFilteredProperties } from '@/hooks/useFilteredProperties';
 import { useAnalytics } from '@/hooks/useAnalytics';
 import { formatCompactINR } from '@/lib/utils';
 import { CITY_COLORS } from '@/constants/cities';
 
 export default function CityOverviewChart() {
-  const properties = usePropertyStore((s) => s.getFilteredProperties());
+  const properties = useFilteredProperties();
   const { cityStats } = useAnalytics(properties);
 
   const data = cityStats
