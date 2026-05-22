@@ -123,7 +123,7 @@ For example:
             <BrainCircuit className="w-8 h-8 text-indigo-500 animate-pulse" />
             UPYOG Cognitive Assistant
           </h1>
-          <p className="text-sm sm:text-[15.5px] mt-1.5 text-[var(--color-text-secondary)] font-medium tracking-wide">
+          <p className="text-base sm:text-[17px] mt-1.5 text-[var(--color-text-primary)]/80 font-medium tracking-wide">
             Ask natural language questions about your property records, municipal taxes, and municipal approvals
           </p>
         </div>
@@ -178,13 +178,13 @@ For example:
                     <article className="max-w-none text-[var(--color-text-primary)]">
                       <ReactMarkdown
                         components={{
-                          p: ({ children }) => <p className="mb-4 text-[16px] sm:text-[17.5px] leading-relaxed text-[var(--color-text-primary)] font-normal last:mb-0">{children}</p>,
-                          li: ({ children }) => <li className="mb-2 text-[16px] sm:text-[17.5px] leading-relaxed text-[var(--color-text-primary)] font-normal list-disc ml-5">{children}</li>,
-                          ul: ({ children }) => <ul className="mb-4 space-y-1">{children}</ul>,
-                          ol: ({ children }) => <ol className="mb-4 space-y-1 list-decimal ml-5">{children}</ol>,
-                          h1: ({ children }) => <h1 className="text-2xl font-bold mb-4 mt-2 text-[var(--color-text-primary)]">{children}</h1>,
-                          h2: ({ children }) => <h2 className="text-xl font-bold mb-3 mt-2 text-[var(--color-text-primary)]">{children}</h2>,
-                          h3: ({ children }) => <h3 className="text-lg font-bold mb-2 mt-2 text-[var(--color-text-primary)]">{children}</h3>,
+                          p: ({ children }) => <p className="mb-4 text-[17.5px] sm:text-[19px] leading-relaxed text-[var(--color-text-primary)] font-normal last:mb-0">{children}</p>,
+                          li: ({ children }) => <li className="mb-2 text-[17.5px] sm:text-[19px] leading-relaxed text-[var(--color-text-primary)] font-normal list-disc ml-6">{children}</li>,
+                          ul: ({ children }) => <ul className="mb-4 space-y-2">{children}</ul>,
+                          ol: ({ children }) => <ol className="mb-4 space-y-2 list-decimal ml-6">{children}</ol>,
+                          h1: ({ children }) => <h1 className="text-3xl font-extrabold mb-5 mt-4 text-[var(--color-text-primary)] tracking-tight">{children}</h1>,
+                          h2: ({ children }) => <h2 className="text-2xl font-bold mb-4 mt-3 text-[var(--color-text-primary)] tracking-tight">{children}</h2>,
+                          h3: ({ children }) => <h3 className="text-xl font-bold mb-3 mt-3 text-[var(--color-text-primary)]">{children}</h3>,
                           strong: ({ children }) => <strong className="font-bold text-indigo-600 dark:text-indigo-400">{children}</strong>,
                           em: ({ children }) => <em className="italic text-[var(--color-text-secondary)]">{children}</em>,
                           table: ({ children }) => (
@@ -203,7 +203,7 @@ For example:
                       </ReactMarkdown>
                     </article>
                   ) : (
-                    <p className="whitespace-pre-line leading-relaxed font-semibold text-[16px] sm:text-[17.5px]">{msg.content}</p>
+                    <p className="whitespace-pre-line leading-relaxed font-semibold text-[17.5px] sm:text-[19px]">{msg.content}</p>
                   )}
                   <p className={`text-[10.5px] sm:text-xs mt-3.5 text-right font-medium ${isAI ? 'text-[var(--color-text-tertiary)]' : 'text-indigo-200'}`}>
                     {msg.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
@@ -298,7 +298,7 @@ For example:
               key={prompt}
               disabled={isLoading}
               onClick={() => handleSendMessage(prompt)}
-              className="px-6 py-3 rounded-full border border-[var(--color-border)] bg-[var(--color-surface)] hover:bg-[var(--color-surface-secondary)] text-[14px] sm:text-[15px] font-bold text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] shadow-sm transition-all whitespace-nowrap cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
+              className="px-7 py-3.5 rounded-full border border-[var(--color-border)] bg-[var(--color-surface)] hover:bg-[var(--color-surface-secondary)] text-[15.5px] sm:text-[17px] font-semibold text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] shadow-sm transition-all whitespace-nowrap cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
             >
               {prompt}
             </button>
@@ -319,14 +319,14 @@ For example:
             disabled={isLoading}
             onChange={(e) => setInput(e.target.value)}
             placeholder="Ask anything about UPYOG property registrations, collections, or pending reviews..."
-            className="flex-1 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-2xl h-[64px] pl-6 pr-18 text-[16px] sm:text-[17.5px] text-[var(--color-text-primary)] placeholder-[var(--color-text-secondary)]/70 font-semibold focus:outline-none focus:ring-2 focus:ring-indigo-500/25 focus:border-indigo-500/80 shadow-inner disabled:opacity-50 disabled:cursor-not-allowed"
+            className="flex-1 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-2xl h-[76px] pl-7 pr-22 text-[18px] sm:text-[19.5px] text-[var(--color-text-primary)] placeholder-[var(--color-text-secondary)]/70 font-semibold focus:outline-none focus:ring-2 focus:ring-indigo-500/25 focus:border-indigo-500/80 shadow-inner disabled:opacity-50 disabled:cursor-not-allowed"
           />
           <button
             type="submit"
             disabled={!input.trim() || isLoading}
-            className="absolute right-2 top-2 w-12 h-12 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white flex items-center justify-center transition-all cursor-pointer shadow-md shadow-indigo-500/25 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="absolute right-3 top-[10px] w-14 h-14 rounded-2xl bg-indigo-600 hover:bg-indigo-700 text-white flex items-center justify-center transition-all cursor-pointer shadow-md shadow-indigo-500/25 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            <Send className="w-5.5 h-5.5" />
+            <Send className="w-6 h-6" />
           </button>
         </form>
 
