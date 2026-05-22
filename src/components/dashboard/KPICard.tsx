@@ -27,7 +27,7 @@ export default function KPICard({ data, index }: KPICardProps) {
   const trendBg = data.changeType === 'increase' ? 'bg-emerald-500/10' : data.changeType === 'decrease' ? 'bg-rose-500/10' : 'bg-slate-500/10';
 
   // Dynamically resolve icon
-  const IconComponent = (LucideIcons as Record<string, React.ComponentType<{ className?: string }>>)[data.icon] || LucideIcons.Activity;
+  const IconComponent = (LucideIcons as any)[data.icon] || LucideIcons.Activity;
 
   const sparkData = data.sparklineData?.map((v, i) => ({ idx: i, val: v })) || [];
 

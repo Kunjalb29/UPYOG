@@ -54,7 +54,7 @@ export default function StatusPieChart() {
               ))}
             </Pie>
             <Tooltip
-              formatter={(value: number, name: string) => [formatNumber(value), name]}
+              formatter={(value: any, name: any) => [formatNumber(Number(value)), String(name)]}
               contentStyle={{
                 backgroundColor: 'var(--color-surface)',
                 border: '1px solid var(--color-border)',

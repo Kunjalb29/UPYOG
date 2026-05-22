@@ -54,7 +54,7 @@ export default function CityOverviewChart() {
               tickFormatter={(v) => formatCompactINR(v)}
             />
             <Tooltip
-              formatter={(value: number) => [formatCompactINR(value), 'Collection']}
+              formatter={(value: any) => [formatCompactINR(Number(value)), 'Collection']}
               contentStyle={{
                 backgroundColor: 'var(--color-surface)',
                 border: '1px solid var(--color-border)',

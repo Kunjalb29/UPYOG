@@ -1,4 +1,4 @@
-import { Property } from '@/types/property';
+import type { Property } from '@/types/property';
 import { CITIES, WARDS, PROPERTY_TYPES } from '@/constants/cities';
 
 export function generateContext(properties: Property[]): string {
