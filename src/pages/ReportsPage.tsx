@@ -1,12 +1,12 @@
 import { motion } from 'framer-motion';
-import { usePropertyStore } from '@/store/usePropertyStore';
+import { useFilteredProperties } from '@/hooks/useFilteredProperties';
 import { useAnalytics } from '@/hooks/useAnalytics';
 import { formatINR, formatNumber, formatPercentage } from '@/lib/utils';
 import { FileText, Database, ShieldAlert, BadgeDollarSign, Download, Table, FileSpreadsheet } from 'lucide-react';
 import toast from 'react-hot-toast';
 
 export default function ReportsPage() {
-  const properties = usePropertyStore((s) => s.getFilteredProperties());
+  const properties = useFilteredProperties();
   const { totalStats } = useAnalytics(properties);
 
   // CSV Export helper
