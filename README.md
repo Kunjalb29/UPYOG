@@ -1,5 +1,10 @@
 # UPYOG Property Tax Analytics Dashboard — Multi-Tenant Platform
 
+[![Live Demo](https://img.shields.io/badge/🚀_Live_Demo-upyog--analytics.vercel.app-6366f1.svg?style=for-the-badge)](https://upyog-analytics.vercel.app)
+[![Deployment](https://img.shields.io/badge/Deployed_on-Vercel-000000.svg?style=for-the-badge&logo=vercel)](https://upyog-analytics.vercel.app)
+
+---
+
 [![Platform Version](https://img.shields.io/badge/Version-v1.0.0-indigo.svg?style=flat-square)](https://github.com/Kunjalb29/UPYOG)
 [![React](https://img.shields.io/badge/React-19.0-blue.svg?style=flat-square)](https://react.dev)
 [![Vite](https://img.shields.io/badge/Vite-6.0-purple.svg?style=flat-square)](https://vitejs.dev)
@@ -9,6 +14,14 @@
 [![License](https://img.shields.io/badge/License-Municipal--Authorized-emerald.svg?style=flat-square)](#)
 
 A high-performance, multi-tenant property tax analytics and municipal verification SaaS platform designed for urban local bodies and smart city administrations across India. Engineered to support aggregated audits, validation backlogs, complex revenue collection monitoring, and context-aware conversational AI audits.
+
+---
+
+## 🌐 Live Platform
+
+> **Public URL:** [https://upyog-analytics.vercel.app](https://upyog-analytics.vercel.app)
+
+The platform is publicly deployed on Vercel and accessible to everyone — no account or login required. The deployment is automatically updated on every commit to this repository.
 
 ---
 
@@ -35,6 +48,7 @@ UPYOG consolidates records from **10 major Indian municipalities** (Delhi, Mumba
 - **Utilities**: date-fns (relative/absolute dates) + clsx / tailwind-merge
 - **Feedback & Notifications**: react-hot-toast (slick toast alerts)
 - **Cognitive Engine**: Google Generative AI SDK (Gemini 1.5 Flash Integration)
+- **Hosting**: Vercel (auto-deploy on push)
 - **SEO & Layout**: Semantic HTML5 markup + Responsive layout shifts
 
 ---
@@ -114,6 +128,26 @@ npm run dev
 ```bash
 npm run build
 ```
+
+---
+
+## ☁️ Deployment
+
+This project is deployed on **Vercel** with automatic CI/CD:
+
+| | |
+|---|---|
+| **Live URL** | https://upyog-analytics.vercel.app |
+| **Platform** | Vercel |
+| **Auto-deploy** | ✅ On every `git push` to `main` |
+| **Build command** | `npm run build` |
+| **Output directory** | `dist` |
+
+To deploy your own fork:
+1. Fork this repository
+2. Import it at [vercel.com/new](https://vercel.com/new)
+3. Add `VITE_GEMINI_API_KEY` as an Environment Variable in Vercel project settings
+4. Click **Deploy** — done!
 
 ---
 
