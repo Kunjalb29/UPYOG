@@ -1,12 +1,12 @@
 import { motion } from 'framer-motion';
 import { ResponsiveContainer, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Cell } from 'recharts';
-import { usePropertyStore } from '@/store/usePropertyStore';
+import { useFilteredProperties } from '@/hooks/useFilteredProperties';
 import { useAnalytics } from '@/hooks/useAnalytics';
 import { formatCompactINR } from '@/lib/utils';
 import { CITY_COLORS } from '@/constants/cities';
 
 export default function CollectionByCity() {
-  const properties = usePropertyStore((s) => s.getFilteredProperties());
+  const properties = useFilteredProperties();
   const { cityStats } = useAnalytics(properties);
 
   // Sort cities by total collection descending
