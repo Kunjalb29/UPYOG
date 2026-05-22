@@ -1,14 +1,14 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ResponsiveContainer, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar, Legend } from 'recharts';
-import { usePropertyStore } from '@/store/usePropertyStore';
+import { useFilteredProperties } from '@/hooks/useFilteredProperties';
 import { useAnalytics } from '@/hooks/useAnalytics';
 import { formatCompactINR, formatNumber, formatPercentage } from '@/lib/utils';
 import { CITIES, CITY_COLORS } from '@/constants/cities';
 import { Building2, CheckCircle2, AlertCircle, IndianRupee, ArrowRightLeft, Landmark } from 'lucide-react';
 
 export default function CityInsightsPage() {
-  const properties = usePropertyStore((s) => s.getFilteredProperties());
+  const properties = useFilteredProperties();
   const { cityStats } = useAnalytics(properties);
   const [activeTab, setActiveTab] = useState<'profiles' | 'compare'>('profiles');
   const [selectedCity, setSelectedCity] = useState<string>('Delhi');
