@@ -1,12 +1,12 @@
 import { useMemo } from 'react';
 import KPICard from './KPICard';
-import { usePropertyStore } from '@/store/usePropertyStore';
+import { useFilteredProperties } from '@/hooks/useFilteredProperties';
 import { useAnalytics } from '@/hooks/useAnalytics';
 import type { KPIData } from '@/types/property';
 import { CITIES } from '@/constants/cities';
 
 export default function KPIGrid() {
-  const properties = usePropertyStore((s) => s.getFilteredProperties());
+  const properties = useFilteredProperties();
   const { totalStats, cityStats } = useAnalytics(properties);
 
   const kpis = useMemo<KPIData[]>(() => {
