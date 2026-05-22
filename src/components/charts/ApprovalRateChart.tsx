@@ -1,10 +1,10 @@
 import { motion } from 'framer-motion';
-import { usePropertyStore } from '@/store/usePropertyStore';
+import { useFilteredProperties } from '@/hooks/useFilteredProperties';
 import { useAnalytics } from '@/hooks/useAnalytics';
 import { formatNumber, getCityColor } from '@/lib/utils';
 
 export default function ApprovalRateChart() {
-  const properties = usePropertyStore((s) => s.getFilteredProperties());
+  const properties = useFilteredProperties();
   const { approvalRates } = useAnalytics(properties);
 
   // Sort by highest approval rate
