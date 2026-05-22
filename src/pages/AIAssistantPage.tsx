@@ -217,7 +217,7 @@ For example:
                 </button>
               </div>
               <p className="text-[10.5px] text-[var(--color-text-tertiary)] leading-relaxed">
-                Need a key? You can get a free developer key from <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener noreferrer" className="text-indigo-500 hover:underline font-semibold">Google AI Studio</a>. Keys are stored strictly inside your browser's local storage.
+                Need a key? You can request an API access key from your municipal system administrator or generate one in your Cognitive Analytics Engine console. Keys are stored strictly and securely inside your browser's local storage.
               </p>
             </div>
           </motion.div>
