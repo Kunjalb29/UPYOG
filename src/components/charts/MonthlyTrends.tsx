@@ -1,11 +1,11 @@
 import { motion } from 'framer-motion';
 import { ResponsiveContainer, AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts';
-import { usePropertyStore } from '@/store/usePropertyStore';
+import { useFilteredProperties } from '@/hooks/useFilteredProperties';
 import { useAnalytics } from '@/hooks/useAnalytics';
 import { formatCompactINR, formatNumber } from '@/lib/utils';
 
 export default function MonthlyTrends() {
-  const properties = usePropertyStore((s) => s.getFilteredProperties());
+  const properties = useFilteredProperties();
   const { monthlyTrends } = useAnalytics(properties);
 
   const customTooltip = ({ active, payload }: any) => {
