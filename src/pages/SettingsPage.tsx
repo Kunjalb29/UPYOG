@@ -7,8 +7,11 @@ import toast from 'react-hot-toast';
 export default function SettingsPage() {
   const { theme, setTheme } = useThemeStore();
   const [exportFormat, setExportFormat] = useState('csv');
+  const [apiKey, setApiKey] = useState<string>(
+    localStorage.getItem('UPYOG_GEMINI_API_KEY') || ''
+  );
   const [apiKeyStatus, setApiKeyStatus] = useState<boolean>(
-    !!import.meta.env.VITE_GEMINI_API_KEY
+    !!import.meta.env.VITE_GEMINI_API_KEY || !!localStorage.getItem('UPYOG_GEMINI_API_KEY')
   );
 
   // Switch toggles (simulated state)
@@ -17,6 +20,10 @@ export default function SettingsPage() {
   const [notifAudits, setNotifAudits] = useState(true);
 
   const handleSaveSettings = () => {
+    if (!import.meta.env.VITE_GEMINI_API_KEY) {
+      localStorage.setItem('UPYOG_GEMINI_API_KEY', apiKey.trim());
+      setApiKeyStatus(!!apiKey.trim() || !!import.meta.env.VITE_GEMINI_API_KEY);
+    }
     toast.success('System preferences saved successfully!');
   };
 
@@ -89,13 +96,13 @@ export default function SettingsPage() {
           className="card p-6 space-y-4"
         >
           <div className="flex items-center gap-2 pb-2 border-b border-[var(--color-border)]/40">
-            <Cpu className="w-4.5 h-4.5 text-pink-500" />
-            <h3 className="font-bold text-sm text-[var(--color-text-primary)]">Gemini AI Engine</h3>
+            <Cpu className="w-4.5 h-4.5 text-indigo-500" />
+            <h3 className="font-bold text-sm text-[var(--color-text-primary)]">Cognitive Analytics Engine</h3>
           </div>
 
           <div className="space-y-3">
             <p className="text-xs text-[var(--color-text-tertiary)] leading-relaxed">
-              Real-time platform cognitive metrics are driven by Google Gemini API. Configure access keys below.
+              Real-time platform cognitive metrics are driven by secure LLM analytics models. Configure access keys below.
             </p>
 
             <div className="space-y-2 mt-2">
@@ -103,7 +110,7 @@ export default function SettingsPage() {
                 <span className="text-[var(--color-text-secondary)]">Integration Status:</span>
                 {apiKeyStatus ? (
                   <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500/10 text-emerald-500 border border-emerald-500/20">
-                    Connected (Active)
+                    {import.meta.env.VITE_GEMINI_API_KEY ? 'Connected (System Key)' : 'Connected (Custom Key)'}
                   </span>
                 ) : (
                   <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-rose-500/10 text-rose-500 border border-rose-500/20">
@@ -112,13 +119,16 @@ export default function SettingsPage() {
                 )}
               </div>
               <div className="flex items-center gap-2 text-xs">
-                <Key className="w-4 h-4 text-[var(--color-text-tertiary)] shrink-0" />
+                <Key className="w-4.5 h-4.5 text-[var(--color-text-tertiary)] shrink-0" />
                 <input
                   type="password"
-                  disabled
-                  value={apiKeyStatus ? '••••••••••••••••••••••••' : ''}
-                  placeholder={apiKeyStatus ? '' : 'VITE_GEMINI_API_KEY not set'}
-                  className="flex-1 bg-[var(--color-surface-tertiary)] border border-[var(--color-border)] rounded-lg py-1.5 px-3 text-[var(--color-text-primary)] outline-none opacity-70 cursor-not-allowed"
+                  value={apiKey}
+                  onChange={(e) => setApiKey(e.target.value)}
+                  placeholder={import.meta.env.VITE_GEMINI_API_KEY ? 'System Key Configured' : 'Enter API access key...'}
+                  disabled={!!import.meta.env.VITE_GEMINI_API_KEY}
+                  className={`flex-1 bg-[var(--color-surface-tertiary)] border border-[var(--color-border)] rounded-xl py-2 px-3 text-[var(--color-text-primary)] outline-none focus:ring-1 focus:ring-indigo-500 transition-all ${
+                    import.meta.env.VITE_GEMINI_API_KEY ? 'opacity-70 cursor-not-allowed bg-black/5 dark:bg-white/5' : ''
+                  }`}
                 />
               </div>
             </div>
