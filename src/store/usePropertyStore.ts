@@ -12,6 +12,7 @@ interface PropertyStore {
   setSelectedStatus: (status: string) => void;
   setSelectedPropertyType: (type: string) => void;
   setSearchQuery: (query: string) => void;
+  updatePropertyStatus: (id: string, status: 'Approved' | 'Pending' | 'Rejected') => void;
   getFilteredProperties: () => Property[];
 }
 
@@ -26,6 +27,10 @@ export const usePropertyStore = create<PropertyStore>((set, get) => ({
   setSelectedStatus: (status) => set({ selectedStatus: status }),
   setSelectedPropertyType: (type) => set({ selectedPropertyType: type }),
   setSearchQuery: (query) => set({ searchQuery: query }),
+
+  updatePropertyStatus: (id, status) => set((s) => ({
+    properties: s.properties.map((p) => p.property_id === id ? { ...p, status } : p)
+  })),
 
   getFilteredProperties: () => {
     const { properties, selectedCity, selectedStatus, selectedPropertyType, searchQuery } = get();
