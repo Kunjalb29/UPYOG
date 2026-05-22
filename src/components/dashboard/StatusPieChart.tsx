@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from 'recharts';
-import { usePropertyStore } from '@/store/usePropertyStore';
+import { useFilteredProperties } from '@/hooks/useFilteredProperties';
 import { useAnalytics } from '@/hooks/useAnalytics';
 import { formatNumber } from '@/lib/utils';
 
@@ -11,7 +11,7 @@ const COLORS = {
 };
 
 export default function StatusPieChart() {
-  const properties = usePropertyStore((s) => s.getFilteredProperties());
+  const properties = useFilteredProperties();
   const { totalStats } = useAnalytics(properties);
 
   const data = [
