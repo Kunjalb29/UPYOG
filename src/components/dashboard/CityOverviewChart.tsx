@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import {
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip,
-  ResponsiveContainer
+  ResponsiveContainer, Cell
 } from 'recharts';
 import { usePropertyStore } from '@/store/usePropertyStore';
 import { useAnalytics } from '@/hooks/useAnalytics';
@@ -64,7 +64,7 @@ export default function CityOverviewChart() {
             />
             <Bar dataKey="collection" radius={[6, 6, 0, 0]} maxBarSize={48}>
               {data.map((entry, i) => (
-                <rect key={i} fill={entry.fill} />
+                <Cell key={`cell-${i}`} fill={entry.fill} />
               ))}
             </Bar>
           </BarChart>
