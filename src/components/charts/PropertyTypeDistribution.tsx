@@ -1,12 +1,12 @@
 import { motion } from 'framer-motion';
 import { ResponsiveContainer, PieChart, Pie, Cell, Tooltip, Legend } from 'recharts';
-import { usePropertyStore } from '@/store/usePropertyStore';
+import { useFilteredProperties } from '@/hooks/useFilteredProperties';
 import { useAnalytics } from '@/hooks/useAnalytics';
 import { formatNumber } from '@/lib/utils';
 import { PROPERTY_TYPE_COLORS } from '@/constants/cities';
 
 export default function PropertyTypeDistribution() {
-  const properties = usePropertyStore((s) => s.getFilteredProperties());
+  const properties = useFilteredProperties();
   const { propertyTypeDistribution } = useAnalytics(properties);
 
   const customTooltip = ({ active, payload }: any) => {
