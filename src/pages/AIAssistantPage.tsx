@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import ReactMarkdown from 'react-markdown';
-import { usePropertyStore } from '@/store/usePropertyStore';
+import { useFilteredProperties } from '@/hooks/useFilteredProperties';
 import { generateAIResponse } from '@/ai/gemini';
 import { generateContext } from '@/ai/context';
 import { SUGGESTED_PROMPTS } from '@/constants/navigation';
@@ -9,7 +9,7 @@ import { BrainCircuit, Send, User, Sparkles, AlertCircle } from 'lucide-react';
 import type { ChatMessage } from '@/types/property';
 
 export default function AIAssistantPage() {
-  const properties = usePropertyStore((s) => s.getFilteredProperties());
+  const properties = useFilteredProperties();
   const [messages, setMessages] = useState<ChatMessage[]>([
     {
       id: 'welcome',
