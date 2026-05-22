@@ -1,73 +1,122 @@
-# React + TypeScript + Vite
+# UPYOG Property Tax Analytics Dashboard — Multi-Tenant Platform
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+[![Platform Version](https://img.shields.io/badge/Version-v1.0.0-indigo.svg?style=flat-square)](https://github.com/Kunjalb29/UPYOG)
+[![React](https://img.shields.io/badge/React-19.0-blue.svg?style=flat-square)](https://react.dev)
+[![Vite](https://img.shields.io/badge/Vite-6.0-purple.svg?style=flat-square)](https://vitejs.dev)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue.svg?style=flat-square)](https://typescriptlang.org)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind--CSS-v4.0-38bdf8.svg?style=flat-square)](https://tailwindcss.com)
+[![Google Gemini API](https://img.shields.io/badge/Gemini--AI-1.5--Flash-pink.svg?style=flat-square)](https://aistudio.google.com)
+[![License](https://img.shields.io/badge/License-Municipal--Authorized-emerald.svg?style=flat-square)](#)
 
-Currently, two official plugins are available:
+A high-performance, multi-tenant property tax analytics and municipal verification SaaS platform designed for urban local bodies and smart city administrations across India. Engineered to support aggregated audits, validation backlogs, complex revenue collection monitoring, and context-aware conversational AI audits.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+## 🏢 Platform Architecture
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+UPYOG consolidates records from **10 major Indian municipalities** (Delhi, Mumbai, Pune, Bengaluru, Chennai, Hyderabad, Ahmedabad, Kolkata, Jaipur, Lucknow) into a singular, responsive executive workspace. The system facilitates multi-tenant data partitioning, global query filtering, and granular ward audits.
 
-## Expanding the ESLint configuration
+### Key Workspaces & Modules
+1. **Interactive Dashboard**: Consolidated financial and operational overview featuring animated counters, sparklines, status donut charts, and live activity streams.
+2. **Advanced Analytics Page**: A grid containing **8 advanced charts** built using Recharts (gradient collections, approval/rejection series, vertical pending backlogs, stacked ward allocations, area trends, custom revenue heatmaps, and custom animated rate bars).
+3. **Municipality Benchmarks**: Comparative matrix featuring side-by-side benchmarking profiles and dynamic Radar Charts.
+4. **UPYOG AI Assistant**: Contextual natural language chatbot integrated with Google Gemini 1.5 Flash to answer data audits and municipal queries on the fly.
+5. **Ledger & Audit Reports**: Instant client-side CSV downloads for complete municipal audit sheets, financial metrics, compliance backlogs, or executive brief txt formats.
+6. **System Settings**: Theme styling toggle, active API integration status, default data format rules, and notifications controls.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+---
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## 🛠️ Technology Stack
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+- **Core**: React 19 + TypeScript + Vite + React Router DOM
+- **Styling & UI**: Tailwind CSS v4.0 + Framer Motion (animated layouts/transitions) + Lucide Icons
+- **State Management**: Zustand (lightweight global store)
+- **Data Visualizations**: Recharts (dynamic responsive charts)
+- **Utilities**: date-fns (relative/absolute dates) + clsx / tailwind-merge
+- **Feedback & Notifications**: react-hot-toast (slick toast alerts)
+- **Cognitive Engine**: Google Generative AI SDK (Gemini 1.5 Flash Integration)
+- **SEO & Layout**: Semantic HTML5 markup + Responsive layout shifts
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+---
+
+## 🏗️ Folder Structure
+
+```text
+src/
+├── ai/
+│   ├── context.ts       # Platform analytical context serializer
+│   └── gemini.ts        # Google Gemini AI SDK client
+├── components/
+│   ├── charts/          # 8 Advanced Recharts & custom grid chart components
+│   ├── dashboard/       # KPI grids, modal systems, and activity feeds
+│   ├── navigation/      # Sidebar drawers, collapsing top bar, mobile drawer
+│   └── ui/              # Reusable form elements and components
+├── constants/
+│   ├── cities.ts        # Color hex maps, gradients, and structural types
+│   └── navigation.ts    # Sidebar route schemes and suggested prompts
+├── data/
+│   └── properties.json  # 1000 detailed property records across 10 cities
+├── hooks/
+│   ├── useAnalytics.ts  # Memoized analytics aggregator hook
+│   └── useAnimatedCounter.ts # High performance RAF easing numbers hook
+├── layouts/
+│   └── DashboardLayout.tsx # Responsive wrapper shell
+├── lib/
+│   └── utils.ts         # INR currency, compact formatting, and general helpers
+├── pages/
+│   ├── DashboardPage.tsx
+│   ├── AnalyticsPage.tsx
+│   ├── CityInsightsPage.tsx
+│   ├── AIAssistantPage.tsx
+│   ├── ReportsPage.tsx
+│   └── SettingsPage.tsx
+├── store/
+│   ├── usePropertyStore.ts # Zustand global property state (with filters)
+│   ├── useThemeStore.ts    # Zustand dark/light theme state
+│   └── useUIStore.ts       # Zustand sidebar & notification states
+├── App.tsx              # Lazy loaded routing shell
+├── index.css            # Custom CSS vars, scrollbars, and Tailwind configuration
+└── main.tsx             # DOM entry point
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## 🚀 Setup & Installation Guide
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### Prerequisites
+- Node.js **v20+**
+- npm **v10+**
+
+### 1. Clone & Install Dependencies
+```bash
+git clone https://github.com/Kunjalb29/UPYOG.git
+cd UPYOG
+npm install
 ```
+
+### 2. Configure Environment Variables
+Create a `.env` file in the root directory:
+```bash
+cp .env.example .env
+```
+Open `.env` and configure your Gemini API Key:
+```text
+VITE_GEMINI_API_KEY=your_google_gemini_api_key_here
+```
+> Get a free API Key from [Google AI Studio](https://aistudio.google.com/apikey).
+
+### 3. Run Development Server
+```bash
+npm run dev
+```
+
+### 4. Build for Production
+```bash
+npm run build
+```
+
+---
+
+## 🔒 License & Authorization
+
+This dashboard is built as an authorized municipal analytical platform for smart city administrations under the UPYOG platform framework. Confidential property records are populated locally using standard multi-tenant datasets.
