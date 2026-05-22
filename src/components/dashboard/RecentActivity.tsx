@@ -1,10 +1,10 @@
 import { motion } from 'framer-motion';
 import { MapPin, ArrowRight } from 'lucide-react';
-import { usePropertyStore } from '@/store/usePropertyStore';
+import { useFilteredProperties } from '@/hooks/useFilteredProperties';
 import { formatDate, getStatusColor } from '@/lib/utils';
 
 export default function RecentActivity() {
-  const properties = usePropertyStore((s) => s.getFilteredProperties());
+  const properties = useFilteredProperties();
 
   const recent = [...properties]
     .sort((a, b) => new Date(b.registration_date).getTime() - new Date(a.registration_date).getTime())
