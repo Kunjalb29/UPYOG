@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import Sidebar from '@/components/navigation/Sidebar';
 import TopBar from '@/components/navigation/TopBar';
 import MobileNav from '@/components/navigation/MobileNav';
+import PropertyModal from '@/components/dashboard/PropertyModal';
 import { useUIStore } from '@/store/useUIStore';
 
 export default function DashboardLayout() {
@@ -10,6 +11,9 @@ export default function DashboardLayout() {
 
   return (
     <div className="min-h-screen" style={{ backgroundColor: 'var(--color-surface-secondary)' }}>
+      {/* Global Property Details Modal */}
+      <PropertyModal />
+
       {/* Desktop Sidebar */}
       <Sidebar />
 
