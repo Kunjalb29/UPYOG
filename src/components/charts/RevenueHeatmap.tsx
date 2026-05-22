@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { usePropertyStore } from '@/store/usePropertyStore';
+import { useFilteredProperties } from '@/hooks/useFilteredProperties';
 import { useAnalytics } from '@/hooks/useAnalytics';
 import { formatCompactINR } from '@/lib/utils';
 import { CITIES } from '@/constants/cities';
 
 export default function RevenueHeatmap() {
-  const properties = usePropertyStore((s) => s.getFilteredProperties());
+  const properties = useFilteredProperties();
   const { cityStats } = useAnalytics(properties);
   const [hoveredCell, setHoveredCell] = useState<{
     city: string;
