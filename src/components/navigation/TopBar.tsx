@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import { Search, Bell, Moon, Sun, Menu, Clock } from 'lucide-react';
+import { useState, useEffect, useRef } from 'react';
+import { Search, Bell, Moon, Sun, Menu, Clock, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { format } from 'date-fns';
 import { useThemeStore } from '@/store/useThemeStore';
@@ -10,11 +10,25 @@ import { cn } from '@/lib/utils';
 export default function TopBar() {
   const { theme, toggleTheme } = useThemeStore();
   const { setSidebarOpen, notifications, markNotificationRead } = useUIStore();
-  const { selectedCity, setSelectedCity } = usePropertyStore();
+  const { selectedCity, setSelectedCity, searchQuery, setSearchQuery } = usePropertyStore();
   const [showNotifications, setShowNotifications] = useState(false);
   const [currentTime, setCurrentTime] = useState(new Date());
   const [searchFocused, setSearchFocused] = useState(false);
   const unread = notifications.filter((n) => !n.read).length;
+
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  // Focus search input on ⌘K / Ctrl+K
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault();
+        inputRef.current?.focus();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
 
   useEffect(() => {
     const timer = setInterval(() => setCurrentTime(new Date()), 1000);
@@ -42,17 +56,33 @@ export default function TopBar() {
         )}>
           <Search className="absolute left-3 w-4 h-4" style={{ color: 'var(--color-text-tertiary)' }} />
           <input
+            ref={inputRef}
             type="text"
-            placeholder="Search properties... (⌘K)"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            placeholder="Search properties..."
             onFocus={() => setSearchFocused(true)}
             onBlur={() => setSearchFocused(false)}
-            className="w-full h-10 pl-10 pr-4 rounded-xl text-sm border transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500/50"
+            className="w-full h-10 pl-10 pr-12 rounded-xl text-sm border transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500/50"
             style={{
               backgroundColor: 'var(--color-surface-tertiary)',
               borderColor: 'var(--color-border)',
               color: 'var(--color-text-primary)',
             }}
           />
+          {!searchQuery && !searchFocused && (
+            <div className="absolute right-3 hidden sm:flex items-center gap-0.5 px-1.5 py-0.5 rounded border border-[var(--color-border)] bg-[var(--color-surface)] text-[9px] font-semibold text-[var(--color-text-tertiary)] pointer-events-none tracking-normal">
+              <span>⌘</span><span>K</span>
+            </div>
+          )}
+          {searchQuery && (
+            <button
+              onClick={() => setSearchQuery('')}
+              className="absolute right-3 p-1 rounded-md hover:bg-black/5 dark:hover:bg-white/5 text-[var(--color-text-tertiary)] hover:text-[var(--color-text-primary)] transition-colors cursor-pointer"
+            >
+              <X className="w-3.5 h-3.5" />
+            </button>
+          )}
         </div>
       </div>
 
